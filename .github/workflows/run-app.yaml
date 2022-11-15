@@ -12,10 +12,10 @@ jobs:
           dotnet-version: '5.0.301'
       - uses: nuget/setup-nuget@v1
       - name: Nuget Restore
-        run: nuget restore GithubActions.sln
+        run: nuget restore BoggleAPI.sln
       - name: Install dependencies
-        run: dotnet restore GithubActions.sln
+        run: dotnet restore BoggleAPI.sln
       - name: Build
-        run: msbuild /p:Configuration=Release GithubActions.sln
+        run: msbuild /p:Configuration=Release BoggleAPI.sln
       - name: Run Unit Tests
         run: mono ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
