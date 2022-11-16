@@ -10,12 +10,9 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0'
-      - uses: nuget/setup-nuget@v1
-      - name: Nuget Restore
-        run: nuget restore BoggleAPI/BoggleAPI.sln
       - name: Install dependencies
-        run: dotnet restore BoggleAPI/BoggleAPI.sln
+        run: dotnet restore
       - name: Build
-        run: msbuild /p:Configuration=Release BoggleAPI/BoggleAPI.sln
+        run: dotnet build /p:Configuration=Release BoggleAPI/BoggleAPI.sln
       - name: Run Unit Tests
-        run: ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
+        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
