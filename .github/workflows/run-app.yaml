@@ -1,0 +1,21 @@
+name: 'Boggle Group 10'
+
+on: [push, pull_request]
+
+jobs:
+  Build_and_Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0'
+      - uses: nuget/setup-nuget@v1
+      - name: Nuget Restore
+        run: nuget restore BoggleAPI/BoggleAPI.sln
+      - name: Install Dependencies
+        run: dotnet restore BoggleAPI/BoggleAPI.sln
+      - name: Project Build
+        run: dotnet build /p:Configuration=Release BoggleAPI/BoggleAPI.sln
+      - name: Run Tests
+        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Debug/net6.0/BoggleAPITest.dll
