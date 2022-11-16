@@ -3,15 +3,19 @@ name: 'Boggle Group 10'
 on: [push, pull_request]
 
 jobs:
-  check-bats-version:
+  build:
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0'
+      - uses: nuget/setup-nuget@v1
+      - name: Nuget Restore
+      - run: nuget restore BoggleAPI/BoggleAPI.sln
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore BoggleAPI/BoggleAPI.sln
       - name: Build
         run: dotnet build /p:Configuration=Release BoggleAPI/BoggleAPI.sln
       - name: Run Unit Tests
