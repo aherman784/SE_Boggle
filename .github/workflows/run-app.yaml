@@ -3,7 +3,7 @@ name: 'Boggle Group 10'
 on: [push, pull_request]
 
 jobs:
-  build:
+  Build and Test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,9 +13,9 @@ jobs:
       - uses: nuget/setup-nuget@v1
       - name: Nuget Restore
         run: nuget restore BoggleAPI/BoggleAPI.sln
-      - name: install dependencies
+      - name: Install Dependencies
         run: dotnet restore BoggleAPI/BoggleAPI.sln
-      - name: build
+      - name: Project Build
         run: dotnet build /p:Configuration=Release BoggleAPI/BoggleAPI.sln
-      - name: tests
-        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
+      - name: Run Tests
+        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/BoggleAPITest.dll
