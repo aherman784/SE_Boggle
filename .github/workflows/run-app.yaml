@@ -18,4 +18,4 @@ jobs:
       - name: Project Build
         run: dotnet build /p:Configuration=Release BoggleAPI/BoggleAPI.sln
       - name: Run Tests
-        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/BoggleAPITest.dll
+        run: dotnet test ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Debug/net6.0/BoggleAPITest.dll
