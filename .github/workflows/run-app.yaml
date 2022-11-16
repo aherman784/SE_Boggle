@@ -18,4 +18,4 @@ jobs:
       - name: Build
         run: msbuild /p:Configuration=Release BoggleAPI/BoggleAPI.sln
       - name: Run Unit Tests
-        run: mono ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
+        run: ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./BoggleAPI/BoggleAPITest/bin/Release/Tests.dll
