@@ -1,0 +1,13 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    height: 15vh;
+    font-size: 8vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
