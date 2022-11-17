@@ -1,7 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Gameplay.scss';
+import io from 'socket.io-client';
+
+const host = window.location;
+console.log(host);
+const socket = io.connect('http://10.69.46.215:80', {
+  withCredentials: true
+});
 
 export function Gameplay() {
+    const [isGameStarted, setIsGameStarted] = useState(true);
+    const [wordInput, setWordInput] = useState('');
     const [boardLetters, setBoardLetters] = useState([
         ['A', 'B', 'C', 'D'],
         ['E', 'F', 'G', 'H'],
@@ -43,9 +52,25 @@ export function Gameplay() {
         'abased',
         'abasement',
         
-    ])
+    ]);
+
+    useEffect(() => {
+        socket.on('message', (message) => {
+        //   console.log(message);
+        setWordInput(message);
+        });
+        // socket.emit('new-message', 'test message');
+      }, []);
+
+      useEffect(() => {
+        socket.emit('new-message', wordInput);
+      }, [wordInput]);
+
     return(
         <div className="gameplay-container">
+            <div className="game-title">
+                Boggle
+            </div>
             <div className='grid-and-leaderboard'>
                 <div className='grid-container'>
                     {boardLetters.map(row => (
@@ -68,7 +93,7 @@ export function Gameplay() {
             <div className='word-bank'>
                 <div className='word-bank-header'>
                     <div className='word-guess-search'>
-                        <input className='word-guess-input'></input>
+                        <input className='word-guess-input' value={wordInput} onChange={(e) => setWordInput(e.target.value)}></input>
                         <button className='word-guess-enter'>Enter</button>
                     </div>
                     <div className='player-score'>Score: 11</div>
