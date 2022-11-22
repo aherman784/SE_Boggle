@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Gameplay.scss';
 import io from 'socket.io-client';
 
-const host = window.location;
-console.log(host);
-const socket = io.connect('http://10.69.46.215:80', {
+const socket = io.connect('http://192.168.1.44:80', {
   withCredentials: true
 });
 
@@ -50,21 +48,35 @@ export function Gameplay() {
         'abandons',
         'abase',
         'abased',
-        'abasement',
-        
+        'abasement',  
     ]);
 
-    useEffect(() => {
-        socket.on('message', (message) => {
-        //   console.log(message);
-        setWordInput(message);
-        });
-        // socket.emit('new-message', 'test message');
-      }, []);
+    socket.on("player-score", (score) => {
+        console.log(score);
+        let tempPlayers = players.slice();
+        for (let player of players) {
+            if (player.Id === score.UserId) {
+                player.Score = score.Score;
+            }
+        }
+        setPlayers(tempPlayers);
+    });
 
-      useEffect(() => {
-        socket.emit('new-message', wordInput);
-      }, [wordInput]);
+    socket.on("game-started", () => {
+        // start a timer
+        // allow words to be entered
+        // remove/disable start game button for host
+    });
+
+    const enterClick = () => {
+        socket.emit("word-guess", wordInput);
+        setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
+        setWordInput("");
+    }
+
+    const inputKeyPressed = (e) => {
+        if (e.key === 'Enter') enterClick();
+    }
 
     return(
         <div className="gameplay-container">
@@ -93,8 +105,8 @@ export function Gameplay() {
             <div className='word-bank'>
                 <div className='word-bank-header'>
                     <div className='word-guess-search'>
-                        <input className='word-guess-input' value={wordInput} onChange={(e) => setWordInput(e.target.value)}></input>
-                        <button className='word-guess-enter'>Enter</button>
+                        <input className='word-guess-input' value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
+                        <button className='word-guess-enter' onClick={enterClick}>Enter</button>
                     </div>
                     <div className='player-score'>Score: 11</div>
                 </div> 
