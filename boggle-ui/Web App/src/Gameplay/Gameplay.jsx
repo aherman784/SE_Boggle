@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import './Gameplay.scss';
+import io from 'socket.io-client';
+import { useEffect } from 'react';
+
+const socket = io.connect('http://localhost:80', {
+  withCredentials: true
+});
 
 export function Gameplay() {
+    const [isGameStarted, setIsGameStarted] = useState(true);
+    const [wordInput, setWordInput] = useState('');
     const [boardLetters, setBoardLetters] = useState([
         ['A', 'B', 'C', 'D'],
         ['E', 'F', 'G', 'H'],
@@ -41,11 +49,43 @@ export function Gameplay() {
         'abandons',
         'abase',
         'abased',
-        'abasement',
-        
-    ])
+        'abasement',  
+    ]);
+
+    useEffect(() => {
+        socket.on("player-score", (score) => {
+            console.log(score);
+            let tempPlayers = players.slice();
+            for (let player of players) {
+                if (player.Id === score.UserId) {
+                    player.Score = score.Score;
+                }
+            }
+            setPlayers(tempPlayers);
+        });
+    
+        socket.on("game-started", () => {
+            // start a timer
+            // allow words to be entered
+            // remove/disable start game button for host
+        });
+    }, []);
+
+    const enterClick = () => {
+        socket.emit("word-guess", wordInput);
+        setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
+        setWordInput("");
+    }
+
+    const inputKeyPressed = (e) => {
+        if (e.key === 'Enter') enterClick();
+    }
+
     return(
         <div className="gameplay-container">
+            <div className="game-title">
+                Boggle
+            </div>
             <div className='grid-and-leaderboard'>
                 <div className='grid-container'>
                     {boardLetters.map(row => (
@@ -68,8 +108,8 @@ export function Gameplay() {
             <div className='word-bank'>
                 <div className='word-bank-header'>
                     <div className='word-guess-search'>
-                        <input className='word-guess-input'></input>
-                        <button className='word-guess-enter'>Enter</button>
+                        <input className='word-guess-input' value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
+                        <button className='word-guess-enter' onClick={enterClick}>Enter</button>
                     </div>
                     <div className='player-score'>Score: 11</div>
                 </div> 
