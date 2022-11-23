@@ -4,7 +4,7 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
   cors: {
-    origin: ['http://localhost:8080', 'http://localhost:8080/', 'http://192.168.1.44:8080', 'http://192.168.1.44:8080/'],
+    origin: ['http://localhost:8080', 'http://localhost:8080/'],
     credentials: true
   }
 });
@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
     io.emit("game-started", []);
     setTimeout(() => {
       console.log("game ended");
-    }, 180000)
+    }, 180000);
   });
 
   socket.on('disconnect', () => {

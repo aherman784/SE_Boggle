@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './Gameplay.scss';
 import io from 'socket.io-client';
+import { useEffect } from 'react';
 
-const socket = io.connect('http://192.168.1.44:80', {
+const socket = io.connect('http://localhost:80', {
   withCredentials: true
 });
 
@@ -51,22 +52,24 @@ export function Gameplay() {
         'abasement',  
     ]);
 
-    socket.on("player-score", (score) => {
-        console.log(score);
-        let tempPlayers = players.slice();
-        for (let player of players) {
-            if (player.Id === score.UserId) {
-                player.Score = score.Score;
+    useEffect(() => {
+        socket.on("player-score", (score) => {
+            console.log(score);
+            let tempPlayers = players.slice();
+            for (let player of players) {
+                if (player.Id === score.UserId) {
+                    player.Score = score.Score;
+                }
             }
-        }
-        setPlayers(tempPlayers);
-    });
-
-    socket.on("game-started", () => {
-        // start a timer
-        // allow words to be entered
-        // remove/disable start game button for host
-    });
+            setPlayers(tempPlayers);
+        });
+    
+        socket.on("game-started", () => {
+            // start a timer
+            // allow words to be entered
+            // remove/disable start game button for host
+        });
+    }, []);
 
     const enterClick = () => {
         socket.emit("word-guess", wordInput);
