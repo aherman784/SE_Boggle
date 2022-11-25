@@ -1,11 +1,11 @@
 ﻿using BoggleAPI.Source.Manager;
-using BoggleAPI.Source.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoggleAPI.Source.Clients
 {
-    public class WordClient : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class WordClient : ControllerBase
     {
         [HttpPost]
         public bool GuessWord([FromBody] string wordGuessed, int playerId)
