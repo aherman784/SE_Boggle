@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace BoggleAPI.Source.Controllers
+namespace BoggleAPI.Source.Clients
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayerController : ControllerBase
+    public class PlayerClient : ControllerBase
     {
         [HttpGet]
         public IEnumerable<Player> GetPlayers()
