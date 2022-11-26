@@ -1,6 +1,6 @@
 namespace BoggleAPITest
 {
-    public class EngineTest
+    public class ClientsTest
     {
         [SetUp]
         public void Setup()

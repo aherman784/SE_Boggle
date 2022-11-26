@@ -97,3 +97,15 @@ C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\Boggl
 C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\obj\Debug\net6.0\BoggleAPITest.pdb
 C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\obj\Debug\net6.0\BoggleAPITest.genruntimeconfig.cache
 C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\obj\Debug\net6.0\ref\BoggleAPITest.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\BoggleAPI.deps.json
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\BoggleAPI.runtimeconfig.json
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\appsettings.json
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\BoggleAPI.exe
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\BoggleAPI.dll
+C:\Users\matth\OneDrive\Desktop\SoftwareEngineeringProject\group-10-boggle\BoggleAPI\BoggleAPITest\bin\Debug\net6.0\BoggleAPI.pdb

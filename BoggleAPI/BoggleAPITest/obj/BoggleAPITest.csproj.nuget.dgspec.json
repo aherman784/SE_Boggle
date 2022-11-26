@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {}
+    "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {
+    "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+        "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
         "projectName": "BoggleAPITest",
-        "projectPath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
-        "packagesPath": "C:\\Users\\logan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
+        "projectPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+        "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\logan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
+                "projectPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -81,7 +85,75 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+        "projectName": "BoggleAPI",
+        "projectPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+        "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
