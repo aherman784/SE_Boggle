@@ -4200,23 +4200,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\matth\\.nuget\\packages\\": {},
+    "C:\\Users\\logan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+      "projectUniqueName": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
       "projectName": "BoggleAPITest",
-      "projectPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
-      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matth\\OneDrive\\Desktop\\SoftwareEngineeringProject\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
+      "projectPath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+      "packagesPath": "C:\\Users\\logan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\logan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4284,7 +4284,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+>>>>>>> Integration
       }
     }
   }
