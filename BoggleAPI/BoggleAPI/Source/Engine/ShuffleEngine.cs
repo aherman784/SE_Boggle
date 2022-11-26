@@ -1,9 +1,8 @@
-using BoggleAPI;
-using System.Collections.Generic;
+using BoggleAPI.Source.AccessorRepository;
 
 namespace BoggleAPI
 {
-    public class Engine : IEngine
+    public class ShuffleEngine : IShuffleEngine
     {
         String[] die1 = new String[] { "R", "I", "F", "O", "B", "X" };
         String[] die2 = new String[] { "I", "F", "E", "H", "E", "Y" };
@@ -22,7 +21,7 @@ namespace BoggleAPI
         String[] die15 = new String[] { "U", "W", "I", "L", "R", "G" };
         String[] die16 = new String[] { "P", "A", "C", "E", "M", "D" };
         
-        public String[,] shuffle()
+        public String[,] GetBoard()
         {
             List <String[]> dice = new List<String[]>();
             dice.Add(die1);
@@ -57,6 +56,12 @@ namespace BoggleAPI
             }
 
             return board;
+        }
+
+        public void SetNewBoard()
+        {
+            BoardAccessor boardAccessor= new BoardAccessor();
+            boardAccessor.SetBoard(GetBoard());
         }
     }
 }

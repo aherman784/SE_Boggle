@@ -1,6 +1,6 @@
 namespace BoggleAPITest
 {
-    public class AccessorRepositoryTest
+    public class ClientsTest
     {
         [SetUp]
         public void Setup()
