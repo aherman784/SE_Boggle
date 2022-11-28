@@ -11,7 +11,7 @@ namespace BoggleAPITest
         }
 
         [Test]
-        public void testGetBoard()
+        public void TestGetBoard()
         {
             String[,] board = engine.GetBoard();
 
@@ -20,7 +20,7 @@ namespace BoggleAPITest
             Assert.NotNull(board[1, 1]);
             Assert.NotNull(board[2, 2]);
             Assert.NotNull(board[3, 3]);
-            Assert.That(16, Is.EqualTo(board.Length));
+            Assert.That(board.Length, Is.EqualTo(16));
         }
     }
 }
