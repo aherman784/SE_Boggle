@@ -58,7 +58,7 @@ export function Gameplay() {
             let tempPlayers = players.slice();
             for (let player of players) {
                 if (player.Id === score.UserId) {
-                    player.Score = score.Score;
+                    player.Score += score.Score;
                 }
             }
             setPlayers(tempPlayers);
@@ -72,7 +72,7 @@ export function Gameplay() {
     }, []);
 
     const enterClick = () => {
-        socket.emit("word-guess", wordInput);
+        socket.emit("word-guess", {PlayerId: 1, Word: wordInput});
         setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
         setWordInput("");
     }

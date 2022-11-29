@@ -12,5 +12,11 @@ namespace BoggleAPI.Source.Manager
             bool isWordValid = WordValidityEngine.IsWordValid(wordGuessed, playerId);
             return isWordValid;
         }
+
+        public void DeleteWords()
+        {
+            var WordAccessor = new WordAccessor();
+            WordAccessor.DeleteWords();
+        }
     }
 }

@@ -1,3 +1,6 @@
+using BoggleAPI.Source.Manager;
+using BoggleAPI.Source.Models;
+
 namespace BoggleAPITest
 {
     public class ManagerTest
@@ -8,9 +11,17 @@ namespace BoggleAPITest
         }
 
         [Test]
-        public void Test1()
+        public void Get_Players_1()
         {
-            Assert.Pass();
+            // Arrange
+            //var PlayerManager = new PlayerManager();
+
+            // Act
+            //Player[] players = PlayerManager.GetPlayers();
+
+            // Assert
+            //double actual = account.Balance;
+            //Assert.AreEqual(players, );
         }
     }
 }

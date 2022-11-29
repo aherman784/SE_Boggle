@@ -8,10 +8,18 @@ namespace BoggleAPI.Source.Clients
     public class WordClient : ControllerBase
     {
         [HttpPost]
-        public bool GuessWord([FromBody] string wordGuessed, int playerId)
+        public bool GuessWord(string wordGuessed, int playerId)
         {
             var WordManager = new WordManager();
             return WordManager.GuessWord(wordGuessed, playerId);
+        }
+
+
+        [HttpDelete]
+        public void DeleteWords()
+        {
+            var WordManager = new WordManager();
+            WordManager.DeleteWords();
         }
     }
 }

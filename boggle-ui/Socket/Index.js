@@ -1,5 +1,4 @@
-// import axios from 'Axios';
-
+const axios = require('axios');
 const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
@@ -8,7 +7,7 @@ const io = require("socket.io")(http, {
     credentials: true
   }
 });
-
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 io.on("connection", (socket) => {
   console.log('a user connected');
 
@@ -17,10 +16,26 @@ io.on("connection", (socket) => {
   get score as return value
   send score to all users for leaderboard
   */
-  socket.on("word-guess", (word) => {
+  socket.on("word-guess", (playerWord) => {
     // send guess to backend
-    console.log("Word guessed:", word);
-    io.emit("player-score", {UserId: Math.floor(Math.random() * 3.99 + 1), Score: Math.floor(Math.random() * 20)});
+    console.log("Word guessed:", playerWord.Word);
+    axios.post(`https://localhost:7147/api/WordClient?wordGuessed=${playerWord.Word}&playerId=${playerWord.PlayerId}`).then((isValid) => {
+      if (isValid) {
+        let score;
+        if (word.length < 5) {
+          score = 1;
+        } else if (word.length < 6) {
+          score = 2;
+        } else if (word.length < 7) {
+          score = 3;
+        } else if (word.length < 8) {
+          score = 4;
+        } else {
+          score = 11;
+        }
+        io.emit("player-score", {UserId: playerWord.PlayerId, Score: score});
+      }
+    });
   });
 
   socket.on("start-game", () => {

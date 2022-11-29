@@ -13,5 +13,10 @@ namespace BoggleAPI.Source.AccessorRepository
         {
             return false;
         }
+
+        public void DeleteWords()
+        {
+            // Delete all entries in CorrectWords table
+        }
     }
 }
