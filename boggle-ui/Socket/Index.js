@@ -22,13 +22,13 @@ io.on("connection", (socket) => {
     axios.post(`https://localhost:7147/api/WordClient?wordGuessed=${playerWord.Word}&playerId=${playerWord.PlayerId}`).then((isValid) => {
       if (isValid) {
         let score;
-        if (word.length < 5) {
+        if (playerWord.Word.length < 5) {
           score = 1;
-        } else if (word.length < 6) {
+        } else if (playerWord.Word.length < 6) {
           score = 2;
-        } else if (word.length < 7) {
+        } else if (playerWord.Word.length < 7) {
           score = 3;
-        } else if (word.length < 8) {
+        } else if (playerWord.Word.length < 8) {
           score = 4;
         } else {
           score = 11;
@@ -41,10 +41,17 @@ io.on("connection", (socket) => {
   socket.on("start-game", () => {
     // send request to start game
     // get board that is created
+    console.log("game started")
     io.emit("game-started", []);
-    setTimeout(() => {
-      console.log("game ended");
-    }, 180000);
+    let secondsLeft = 180;
+    let interval = setInterval(() => {
+      secondsLeft -= 1;
+      console.log(secondsLeft);
+      if (secondsLeft <= 0) {
+        console.log("game ended");
+        clearInterval(interval);
+      }
+    }, 1000);
   });
 
   socket.on('disconnect', () => {
