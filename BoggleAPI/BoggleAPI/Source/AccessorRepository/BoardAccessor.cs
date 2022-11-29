@@ -4,7 +4,7 @@ namespace BoggleAPI.Source.AccessorRepository
 {
     public class BoardAccessor : IBoardAccessor
     {
-        public String[,] GetBoard()
+        public string[,] GetBoard()
         {
             // Will eventually get the board from the database
             // For now it just returns a random board
@@ -12,7 +12,7 @@ namespace BoggleAPI.Source.AccessorRepository
             return shuffleEngine.GetBoard();
         }
 
-        public void SetBoard(String[,] board)
+        public void SetBoard(string[,] board)
         {
             // Will eventually set the board in the database using the board given
         }
