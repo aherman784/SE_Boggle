@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r71MdDD6MNat3eYwOG/R+hBVRhwggv7CCdp6abwv/8FkQuwqje7uLyLKkeEnkUjLV5MnEYBfO5GU7OsC8UI/Zg==",
+  "dgSpecHash": "cwXq7M+bzOmIs11LQfM6DGP0NdZEynXZ4XRrGMOpxiiYNVb18xsSviH0xSlguIelRI+M2Xitk121ISWZOPobNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+  "projectFilePath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\logan\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\logan\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

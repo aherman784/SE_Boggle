@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b02dA2Pd0v1+KEO/8GltsV/QDJzc45DV0znhZgxLTCpydgKt/jJJcjN6uTLt2wEbNgST3alIJp+xmcu7JMj3jg==",
+  "dgSpecHash": "TNJQSYwmyhMpntmrow/bb++wAAzOpqMoUewFYfLQy9Gob0Pr6Dy7G0Db6bYvH1yNIQeatDx/7s+LHywHi2sGXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\logan\\Repos\\CSCE 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+  "projectFilePath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\logan\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\logan\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
