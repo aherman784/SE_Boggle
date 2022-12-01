@@ -81,10 +81,11 @@ namespace BoggleAPI.Source.Engine
                             return true;
                         }
                     }
-
-                    return false;
                 }
+
+                return false;
             }
+
             return false;
         }
         public bool IsWordCorrectLength(string wordGuessed)
