@@ -53,26 +53,29 @@ export function Gameplay() {
     ]);
 
     useEffect(() => {
+        socket.emit("is-game-started");
+        socket.on("is-game-started", (isStarted) => {
+            console.log(isStarted);
+            setIsGameStarted(isStarted);
+        })
         socket.on("player-score", (score) => {
             console.log(score);
             let tempPlayers = players.slice();
             for (let player of players) {
                 if (player.Id === score.UserId) {
-                    player.Score = score.Score;
+                    player.Score += score.Score;
                 }
             }
             setPlayers(tempPlayers);
         });
     
-        socket.on("game-started", () => {
-            // start a timer
-            // allow words to be entered
-            // remove/disable start game button for host
+        socket.on("game-started", (shuffledBoard) => {
+            setBoardLetters(shuffledBoard);
         });
     }, []);
 
     const enterClick = () => {
-        socket.emit("word-guess", wordInput);
+        socket.emit("word-guess", {PlayerId: 1, Word: wordInput});
         setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
         setWordInput("");
     }
@@ -81,8 +84,18 @@ export function Gameplay() {
         if (e.key === 'Enter') enterClick();
     }
 
+    const startGame = () => {
+        setIsGameStarted(true);
+        socket.emit("start-game");
+    }
+
     return(
-        <div className="gameplay-container">
+        <>
+            {!isGameStarted ? 
+            <div className='start-game-container' onClick={startGame}>
+                Start Game!
+            </div> : <></>}
+            <div className="gameplay-container">
             <div className="game-title">
                 Boggle
             </div>
@@ -108,8 +121,8 @@ export function Gameplay() {
             <div className='word-bank'>
                 <div className='word-bank-header'>
                     <div className='word-guess-search'>
-                        <input className='word-guess-input' value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
-                        <button className='word-guess-enter' onClick={enterClick}>Enter</button>
+                        <input className='word-guess-input' disabled={!isGameStarted} value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
+                        <button className='word-guess-enter' disabled={!isGameStarted} onClick={enterClick}>Enter</button>
                     </div>
                     <div className='player-score'>Score: 11</div>
                 </div> 
@@ -120,5 +133,6 @@ export function Gameplay() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
