@@ -8,7 +8,7 @@ const socket = io.connect('http://localhost:80', {
 });
 
 export function Gameplay() {
-    const [isGameStarted, setIsGameStarted] = useState(false);
+    const [isGameStarted, setIsGameStarted] = useState(true);
     const [wordInput, setWordInput] = useState('');
     const [boardLetters, setBoardLetters] = useState([
         ['A', 'B', 'C', 'D'],
@@ -53,6 +53,11 @@ export function Gameplay() {
     ]);
 
     useEffect(() => {
+        socket.emit("is-game-started");
+        socket.on("is-game-started", (isStarted) => {
+            console.log(isStarted);
+            setIsGameStarted(isStarted);
+        })
         socket.on("player-score", (score) => {
             console.log(score);
             let tempPlayers = players.slice();

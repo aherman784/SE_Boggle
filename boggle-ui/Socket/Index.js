@@ -8,8 +8,13 @@ const io = require("socket.io")(http, {
   }
 });
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+let isGameStarted = false;
 io.on("connection", (socket) => {
   console.log('a user connected');
+
+  socket.on("is-game-started", () => {
+    io.emit("is-game-started", isGameStarted);
+  });
 
   /* retrieve word guessed 
   send to backend to check if it is valid
@@ -44,11 +49,15 @@ io.on("connection", (socket) => {
     console.log("game started")
     io.emit("game-started", []);
     let secondsLeft = 180;
+    isGameStarted = true;
+    io.emit("is-game-started", true);
     let interval = setInterval(() => {
       secondsLeft -= 1;
       console.log(secondsLeft);
       if (secondsLeft <= 0) {
+        isGameStarted = false;
         console.log("game ended");
+        io.emit("is-game-started", false);
         clearInterval(interval);
       }
     }, 1000);
