@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {}
+    "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {
+    "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+        "projectUniqueName": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
         "projectName": "BoggleAPITest",
-        "projectPath": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
-        "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
+        "projectPath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\BoggleAPITest.csproj",
+        "packagesPath": "C:\\Users\\logan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPITest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\logan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
-                "projectPath": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj"
+              "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
+                "projectPath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj"
               }
             }
           }
@@ -47,6 +47,14 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.31, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.2, )"
             },
             "NUnit": {
               "target": "Package",
@@ -71,8 +79,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,21 +88,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
+    "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+        "projectUniqueName": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
         "projectName": "BoggleAPI",
-        "projectPath": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
-        "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alex\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\obj\\",
+        "projectPath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+        "packagesPath": "C:\\Users\\logan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\logan\\Repos\\College Work\\Soft 361\\group-10-boggle\\BoggleAPI\\BoggleAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\logan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,7 +110,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -121,9 +128,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.31, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
@@ -132,8 +155,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -145,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
