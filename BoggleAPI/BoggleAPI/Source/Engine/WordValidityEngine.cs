@@ -13,7 +13,7 @@ namespace BoggleAPI.Source.Engine
             ShuffleEngine shuffleEngine = new ShuffleEngine();
             var WordAccessor = new WordAccessor();
             bool isWordInDictionary = WordAccessor.IsWordInDictionary(wordGuessed);
-            if (IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(shuffleEngine.GetBoard(), wordGuessed, r, c))
+            if (true || IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(shuffleEngine.GetBoard(), wordGuessed, r, c))
             {
                 WordAccessor.PostCorrectWord(wordGuessed, playerId);
                 return true;
