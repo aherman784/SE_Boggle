@@ -36,25 +36,15 @@ io.on("connection", (socket) => {
     console.log("Word guessed:", playerWord.Word);
     axios.post(`https://localhost:7147/api/WordClient?wordGuessed=${playerWord.Word}&playerId=${playerWord.PlayerId}`).then((isValid) => {
       if (isValid) {
-        let score;
-        if (playerWord.Word.length < 5) {
-          score = 1;
-        } else if (playerWord.Word.length < 6) {
-          score = 2;
-        } else if (playerWord.Word.length < 7) {
-          score = 3;
-        } else if (playerWord.Word.length < 8) {
-          score = 4;
-        } else {
-          score = 11;
-        }
-        for (let player of players) {
-          if (player.Id === playerWord.PlayerId) {
-            player.Score = score;
-            break;
+        axios.get(`https://localhost:7147/api/ScoreClient?playerId=${playerWord.PlayerId}`).then((score) => {
+          for (let player of players) {
+            if (player.Id === playerWord.PlayerId) {
+              player.Score = score.data;
+              break;
+            }
           }
-        }
-        io.emit("update-player-info", players);
+          io.emit("update-player-info", players);
+        });
       }
     });
   });
@@ -66,8 +56,10 @@ io.on("connection", (socket) => {
       axios.delete('https://localhost:7147/api/PlayerClient').then(() => {
         axios.post('https://localhost:7147/api/PlayerClient', players).then(() => {
           axios.get('https://localhost:7147/api/BoardClient').then((board) => {
-            console.log(board.data);
             const boardArray = [];
+            for (const player of players) {
+              player.Score = 0;
+            }
             io.emit("update-player-info", players);
             iBoard = [];
             for (let i = 0; i < board.data.length; i++) {
@@ -77,9 +69,8 @@ io.on("connection", (socket) => {
                 iBoard = [];
               }
             }
-            console.log(boardArray);
             io.emit("game-started", boardArray);
-            let secondsLeft = 60;
+            let secondsLeft = 180;
             isGameStarted = true;
             io.emit("is-game-started", true);
             let interval = setInterval(() => {

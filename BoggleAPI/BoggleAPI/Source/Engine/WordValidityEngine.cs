@@ -15,6 +15,7 @@ namespace BoggleAPI
             var boardAccessor = new BoardAccessor();
             var WordAccessor = new WordAccessor();
 
+            wordGuessed = wordGuessed.ToUpper();
             bool isWordInDictionary = WordAccessor.IsWordInDictionary(wordGuessed);
             if (IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(boardAccessor.GetBoard(), wordGuessed, r, c))
             {
@@ -52,7 +53,11 @@ namespace BoggleAPI
                 bool result = LocateMatch(board, wordGuessed, x - 1, y, row, column, letter + 1) |
                               LocateMatch(board, wordGuessed, x + 1, y, row, column, letter + 1) |
                               LocateMatch(board, wordGuessed, x, y - 1, row, column, letter + 1) |
-                              LocateMatch(board, wordGuessed, x, y + 1, row, column, letter + 1);
+                              LocateMatch(board, wordGuessed, x, y + 1, row, column, letter + 1) |
+                              LocateMatch(board, wordGuessed, x - 1, y - 1, row, column, letter + 1) |
+                              LocateMatch(board, wordGuessed, x + 1, y + 1, row, column, letter + 1) |
+                              LocateMatch(board, wordGuessed, x + 1, y - 1, row, column, letter + 1) |
+                              LocateMatch(board, wordGuessed, x - 1, y + 1, row, column, letter + 1);
                 board[x, y] = tmp;
                 return result;
             }
