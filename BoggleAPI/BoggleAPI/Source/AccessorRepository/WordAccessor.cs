@@ -43,6 +43,40 @@ namespace BoggleAPI.Source.AccessorRepository
             return isWordPresent;
         }
 
+        public string[] GetPlayerWords(int playerID)
+        {
+            string[] words = new string[1];
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                string query = $"SELECT DISTINCT Word FROM correctwords WHERE (PlayerId) = {playerID}";
+                conn.Open();
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader dataReader = command.ExecuteReader())
+                    {
+                        try
+                        {
+                            List<string> wordList = new List<string>();
+                            while (dataReader.Read())
+                            {
+                                wordList.Add(dataReader.GetString("Word"));
+                                Console.WriteLine(dataReader.GetString("Word"));
+                            }
+                            words = wordList.ToArray();
+                        }
+                        catch
+                        {
+                            words[0] = "";
+                        }
+                    }
+                }
+                conn.Close();
+            }
+
+            return words;
+        }
+
         public void DeleteWords()
         {
             string query = $"DELETE FROM correctwords WHERE true;";
