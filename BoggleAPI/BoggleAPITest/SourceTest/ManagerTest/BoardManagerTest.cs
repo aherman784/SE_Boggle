@@ -16,10 +16,10 @@ namespace BoggleAPITest
         [Test]
         public void TestGetBoard()
         {
-            string[,] board0 = boardManager.GetBoard(false);
+            //string[,] board0 = boardManager.GetBoard();
 
-            string[,] board1 = boardManager.GetBoard(true);
-            string[,] board2 = boardManager.GetBoard(false);
+            //string[,] board1 = boardManager.GetBoard();
+            //string[,] board2 = boardManager.GetBoard();
 
             // This is not implemented yet
             //Assert.That(!(board1.Rank == board0.Rank && Enumerable.Range(0, board1.Rank).All(dimension => board1.GetLength(dimension) == 

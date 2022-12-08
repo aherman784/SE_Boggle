@@ -1,5 +1,4 @@
-// import axios from 'Axios';
-
+const axios = require('axios');
 const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
@@ -8,28 +7,60 @@ const io = require("socket.io")(http, {
     credentials: true
   }
 });
-
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+let isGameStarted = false;
 io.on("connection", (socket) => {
   console.log('a user connected');
+
+  socket.on("is-game-started", () => {
+    io.emit("is-game-started", isGameStarted);
+  });
 
   /* retrieve word guessed 
   send to backend to check if it is valid
   get score as return value
   send score to all users for leaderboard
   */
-  socket.on("word-guess", (word) => {
+  socket.on("word-guess", (playerWord) => {
     // send guess to backend
-    console.log("Word guessed:", word);
-    io.emit("player-score", {UserId: Math.floor(Math.random() * 3.99 + 1), Score: Math.floor(Math.random() * 20)});
+    console.log("Word guessed:", playerWord.Word);
+    axios.post(`https://localhost:7147/api/WordClient?wordGuessed=${playerWord.Word}&playerId=${playerWord.PlayerId}`).then((isValid) => {
+      if (isValid) {
+        let score;
+        if (playerWord.Word.length < 5) {
+          score = 1;
+        } else if (playerWord.Word.length < 6) {
+          score = 2;
+        } else if (playerWord.Word.length < 7) {
+          score = 3;
+        } else if (playerWord.Word.length < 8) {
+          score = 4;
+        } else {
+          score = 11;
+        }
+        io.emit("player-score", {UserId: playerWord.PlayerId, Score: score});
+      }
+    });
   });
 
   socket.on("start-game", () => {
     // send request to start game
     // get board that is created
+    console.log("game started")
     io.emit("game-started", []);
-    setTimeout(() => {
-      console.log("game ended");
-    }, 180000);
+    let secondsLeft = 180;
+    isGameStarted = true;
+    io.emit("is-game-started", true);
+    let interval = setInterval(() => {
+      secondsLeft -= 1;
+      console.log(secondsLeft);
+      if (secondsLeft <= 0) {
+        isGameStarted = false;
+        console.log("game ended");
+        io.emit("is-game-started", false);
+        clearInterval(interval);
+      }
+    }, 1000);
   });
 
   socket.on('disconnect', () => {
