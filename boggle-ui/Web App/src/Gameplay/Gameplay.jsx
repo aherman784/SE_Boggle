@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Gameplay.scss';
 import io from 'socket.io-client';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const socket = io.connect('http://localhost:80', {
   withCredentials: true
@@ -9,19 +10,17 @@ const socket = io.connect('http://localhost:80', {
 
 export function Gameplay() {
     const [isGameStarted, setIsGameStarted] = useState(true);
+    const [thisPlayer, setThisPlayer] = useState();
     const [wordInput, setWordInput] = useState('');
+    const [hasJoinedMidSession, setHasJoinedMidSession] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(180);
     const [boardLetters, setBoardLetters] = useState([
         ['A', 'B', 'C', 'D'],
         ['E', 'F', 'G', 'H'],
         ['I', 'J', 'K', 'L'],
         ['M', 'N', 'O', 'P'],
     ]);
-    const [players, setPlayers] = useState([
-        {Id: 1, Username: 'Logan', Score: 11},
-        {Id: 2, Username: 'Hunter', Score: 17},
-        {Id: 3, Username: 'Matthew', Score: 8},
-        {Id: 4, Username: 'Alex', Score: 14},
-    ]);
+    const [players, setPlayers] = useState([]);
     const [wordsGuessed, setWordsGuessed] = useState([
         'aa',
         'aaa',
@@ -51,31 +50,51 @@ export function Gameplay() {
         'abased',
         'abasement',  
     ]);
+    const adjectives = ['Beautiful','Happy','Silly','Clever','Graceful','Magnificent','Radiant','Elegant','Spunky','Cheerful','Sparkling','Vivacious','Poised','Playful','Lively'];
+    const nouns = ['table','book','dog','car','flower','tree','desk','house','chair','pencil','phone','computer','bowl','spoon','fork'];
 
     useEffect(() => {
+        const playerInfo = {Id: Math.floor(Math.random()*100000), 
+            Username: adjectives[Math.floor(Math.random()*adjectives.length)] + " " + nouns[Math.floor(Math.random()*nouns.length)], 
+            Score: 0};
+        setThisPlayer(playerInfo);
+        socket.emit("player-joined", playerInfo);
+        socket.emit("is-game-in-session", playerInfo);
+        socket.on("game-in-session-status", (update) => {
+            if ((update.player.Id === playerInfo.Id) && update.status) {
+                setHasJoinedMidSession(true);
+            }
+        })
         socket.emit("is-game-started");
         socket.on("is-game-started", (isStarted) => {
-            console.log(isStarted);
             setIsGameStarted(isStarted);
+
         })
-        socket.on("player-score", (score) => {
-            console.log(score);
-            let tempPlayers = players.slice();
-            for (let player of players) {
-                if (player.Id === score.UserId) {
-                    player.Score += score.Score;
-                }
-            }
-            setPlayers(tempPlayers);
-        });
     
         socket.on("game-started", (shuffledBoard) => {
+            console.log(shuffledBoard);
             setBoardLetters(shuffledBoard);
+            setHasJoinedMidSession(false);
         });
+
+        socket.on("update-player-info", (playersInfo) => {
+            if (thisPlayer) {
+                for (const player of playersInfo.slice()) {
+                    if (player.Id === thisPlayer.Id) {
+                        setThisPlayer(player);
+                    }
+                }
+            }
+            setPlayers(playersInfo);
+        });
+        
+        socket.on("time-left", (seconds) => {
+            setTimeLeft(seconds);
+        })
     }, []);
 
     const enterClick = () => {
-        socket.emit("word-guess", {PlayerId: 1, Word: wordInput});
+        socket.emit("word-guess", {PlayerId: thisPlayer.Id, Word: wordInput});
         setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
         setWordInput("");
     }
@@ -91,9 +110,14 @@ export function Gameplay() {
 
     return(
         <>
+            <div className='timer'>{timeLeft}</div>
             {!isGameStarted ? 
             <div className='start-game-container' onClick={startGame}>
                 Start Game!
+            </div> : <></>}
+            {hasJoinedMidSession ? 
+            <div className='joined-mid-session-popup'>
+                Game already in session.
             </div> : <></>}
             <div className="gameplay-container">
             <div className="game-title">
@@ -111,9 +135,9 @@ export function Gameplay() {
                     <div className='leaderboard-header'>Leaderboard:</div>
                     {players.sort((a, b) => b.Score - a.Score).map(player => (
                         <div className='leaderboard-player-container'>
-                            <div className='leaderboard-player-score'>{player.Score}</div>
+                            <div className='leaderboard-player-score' style={thisPlayer ? (player.Id === thisPlayer.Id ? {fontWeight: 1000} : {}) : {}}>{player.Score}</div>
                             &nbsp;
-                            <div className='leaderboard-player-name'>{player.Username}</div>
+                            <div className='leaderboard-player-name' style={thisPlayer ? (player.Id === thisPlayer.Id ? {fontWeight: 1000} : {}) : {}}>{player.Username}</div>
                         </div>
                     ))}
                 </div>
@@ -121,10 +145,10 @@ export function Gameplay() {
             <div className='word-bank'>
                 <div className='word-bank-header'>
                     <div className='word-guess-search'>
-                        <input className='word-guess-input' disabled={!isGameStarted} value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
-                        <button className='word-guess-enter' disabled={!isGameStarted} onClick={enterClick}>Enter</button>
+                        <input className='word-guess-input' disabled={!isGameStarted || hasJoinedMidSession} value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
+                        <button className='word-guess-enter' disabled={!isGameStarted || hasJoinedMidSession} onClick={enterClick}>Enter</button>
                     </div>
-                    <div className='player-score'>Score: 11</div>
+                    <div className='player-score'>Score: {thisPlayer ? thisPlayer.Score : 0}</div>
                 </div> 
                 <div className='word-bank-words'>
                     {wordsGuessed.map(word => (

@@ -135,3 +135,27 @@
       color: white;
     }
   }
+  
+  .joined-mid-session-popup {
+    position: absolute;
+    margin-left: 40vw;
+    margin-top: 40vh;
+    background-color: white;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vmin;
+    padding: 2vmin;
+    border-radius: 1vmin;
+  }
+
+  .timer {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    width: 5vmin;
+    height: 3vmin;
+    font-size: 3vmin;
+  }

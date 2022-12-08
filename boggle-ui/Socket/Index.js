@@ -8,13 +8,23 @@ const io = require("socket.io")(http, {
   }
 });
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+let players = [];
 let isGameStarted = false;
 io.on("connection", (socket) => {
   console.log('a user connected');
 
+  socket.on("player-joined", (playerInfo) => {
+    players.push(playerInfo);
+    io.emit("update-player-info", players);
+  })
+
   socket.on("is-game-started", () => {
     io.emit("is-game-started", isGameStarted);
   });
+
+  socket.on("is-game-in-session", (playerInfo) => {
+    io.emit("game-in-session-status", {status: isGameStarted, player: playerInfo});
+  })
 
   /* retrieve word guessed 
   send to backend to check if it is valid
@@ -38,29 +48,55 @@ io.on("connection", (socket) => {
         } else {
           score = 11;
         }
-        io.emit("player-score", {UserId: playerWord.PlayerId, Score: score});
+        for (let player of players) {
+          if (player.Id === playerWord.PlayerId) {
+            player.Score = score;
+            break;
+          }
+        }
+        io.emit("update-player-info", players);
       }
     });
   });
 
   socket.on("start-game", () => {
     // send request to start game
-    // get board that is created
-    console.log("game started")
-    io.emit("game-started", []);
-    let secondsLeft = 180;
-    isGameStarted = true;
-    io.emit("is-game-started", true);
-    let interval = setInterval(() => {
-      secondsLeft -= 1;
-      console.log(secondsLeft);
-      if (secondsLeft <= 0) {
-        isGameStarted = false;
-        console.log("game ended");
-        io.emit("is-game-started", false);
-        clearInterval(interval);
-      }
-    }, 1000);
+    // get board that is created.
+    axios.delete('https://localhost:7147/api/WordClient').then(() => {
+      axios.delete('https://localhost:7147/api/PlayerClient').then(() => {
+        axios.post('https://localhost:7147/api/PlayerClient', players).then(() => {
+          axios.get('https://localhost:7147/api/BoardClient').then((board) => {
+            console.log(board.data);
+            const boardArray = [];
+            io.emit("update-player-info", players);
+            iBoard = [];
+            for (let i = 0; i < board.data.length; i++) {
+              iBoard.push(board.data[i]);
+              if (iBoard.length === 4) {
+                boardArray.push(iBoard);
+                iBoard = [];
+              }
+            }
+            console.log(boardArray);
+            io.emit("game-started", boardArray);
+            let secondsLeft = 60;
+            isGameStarted = true;
+            io.emit("is-game-started", true);
+            let interval = setInterval(() => {
+              secondsLeft -= 1;
+              console.log(secondsLeft);
+              io.emit("time-left", secondsLeft);
+              if (secondsLeft <= 0) {
+                isGameStarted = false;
+                console.log("game ended");
+                io.emit("is-game-started", false);
+                clearInterval(interval);
+              }
+            }, 1000);
+          });
+        })
+      });
+    });
   });
 
   socket.on('disconnect', () => {
