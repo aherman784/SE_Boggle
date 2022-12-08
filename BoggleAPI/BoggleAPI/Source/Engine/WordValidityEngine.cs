@@ -12,8 +12,9 @@ namespace BoggleAPI
         static readonly int c = 4;
         public bool IsWordValid(string wordGuessed, int playerId)
         {
-            BoardAccessor boardAccessor = new BoardAccessor();
+            var boardAccessor = new BoardAccessor();
             var WordAccessor = new WordAccessor();
+
             bool isWordInDictionary = WordAccessor.IsWordInDictionary(wordGuessed);
             if (IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(boardAccessor.GetBoard(), wordGuessed, r, c))
             {
@@ -28,10 +29,6 @@ namespace BoggleAPI
 
         static bool LocateMatch(String[,] board, string wordGuessed, int x, int y, int row, int column, int letter)
         {
-            //calling our ShuffleEngine to get the board
-            ShuffleEngine shuffleEngine = new ShuffleEngine();
-            //Assigning our board from ShuffleEngine to our board String array
-            board = shuffleEngine.GetBoard();
 
             if (wordGuessed.Length == letter + 1)
             {
@@ -64,12 +61,8 @@ namespace BoggleAPI
         }
 
 
-        public bool IsWordOnBoard(String [,]board, string wordGuessed, int row, int column)
-        {
-            // Get board from the database
-            BoardAccessor boardAccessor = new BoardAccessor();
-            board = boardAccessor.GetBoard();
-            
+        public bool IsWordOnBoard(String[,] board, string wordGuessed, int row, int column)
+        {        
             //check if word is valid length
             IsWordCorrectLength(wordGuessed);
             //for loop to run through each column and row checking for letters
