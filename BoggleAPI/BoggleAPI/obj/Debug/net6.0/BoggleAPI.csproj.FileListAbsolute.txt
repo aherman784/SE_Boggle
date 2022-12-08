@@ -161,3 +161,4 @@ C:\Users\matth\Documents\School\UNL_Semester_1\Software_Engineering\Software_Eng
 C:\Users\matth\Documents\School\UNL_Semester_1\Software_Engineering\Software_Engineering_Project\group-10-boggle\BoggleAPI\BoggleAPI\obj\Debug\net6.0\BoggleAPI.pdb
 C:\Users\matth\Documents\School\UNL_Semester_1\Software_Engineering\Software_Engineering_Project\group-10-boggle\BoggleAPI\BoggleAPI\obj\Debug\net6.0\BoggleAPI.genruntimeconfig.cache
 C:\Users\matth\Documents\School\UNL_Semester_1\Software_Engineering\Software_Engineering_Project\group-10-boggle\BoggleAPI\BoggleAPI\obj\Debug\net6.0\ref\BoggleAPI.dll
+C:\Users\matth\Documents\School\UNL_Semester_1\Software_Engineering\Software_Engineering_Project\group-10-boggle\BoggleAPI\BoggleAPI\bin\Debug\net6.0\BoggleAPI.dll.config

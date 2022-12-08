@@ -12,10 +12,10 @@ namespace BoggleAPI
         static readonly int c = 4;
         public bool IsWordValid(string wordGuessed, int playerId)
         {
-            ShuffleEngine shuffleEngine = new ShuffleEngine();
+            BoardAccessor boardAccessor = new BoardAccessor();
             var WordAccessor = new WordAccessor();
             bool isWordInDictionary = WordAccessor.IsWordInDictionary(wordGuessed);
-            if (true || IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(shuffleEngine.GetBoard(), wordGuessed, r, c))
+            if (IsWordCorrectLength(wordGuessed) && isWordInDictionary && IsWordOnBoard(boardAccessor.GetBoard(), wordGuessed, r, c))
             {
                 WordAccessor.PostCorrectWord(wordGuessed, playerId);
                 return true;
@@ -66,10 +66,9 @@ namespace BoggleAPI
 
         public bool IsWordOnBoard(String [,]board, string wordGuessed, int row, int column)
         {
-            //Calling ShuffleEngine to get the board
-            ShuffleEngine shuffleEngine = new ShuffleEngine(); 
-            //Assigning our board from ShuffleEngine to our board String array
-            board = shuffleEngine.GetBoard();
+            // Get board from the database
+            BoardAccessor boardAccessor = new BoardAccessor();
+            board = boardAccessor.GetBoard();
             
             //check if word is valid length
             IsWordCorrectLength(wordGuessed);
