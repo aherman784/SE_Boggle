@@ -1,7 +1,9 @@
-﻿using BoggleAPI.Source.AccessorRepository;
+﻿
+
+using BoggleAPI.Source.AccessorRepository;
 using BoggleAPI.Source.IEngine;
 
-namespace BoggleAPI.Source.Engine
+namespace BoggleAPI
 {
     public class WordValidityEngine : IWordValidityEngine
     {
@@ -30,6 +32,11 @@ namespace BoggleAPI.Source.Engine
             ShuffleEngine shuffleEngine = new ShuffleEngine();
             //Assigning our board from ShuffleEngine to our board String array
             board = shuffleEngine.GetBoard();
+
+            if (wordGuessed.Length == letter + 1)
+            {
+                return true;
+            }
 
             //Checking for out of bounds
             if (x < 0 || y < 0 || x >= row || y >= column)
@@ -63,13 +70,17 @@ namespace BoggleAPI.Source.Engine
             ShuffleEngine shuffleEngine = new ShuffleEngine(); 
             //Assigning our board from ShuffleEngine to our board String array
             board = shuffleEngine.GetBoard();
-
+            
             //check if word is valid length
             IsWordCorrectLength(wordGuessed);
-
             //for loop to run through each column and row checking for letters
+
             for (int i = 0; i < row; i++)
             {
+                if (i == wordGuessed.Length)
+                {
+                    return true;
+                }
                 for (int j = 0; j < column; j++)
                 {
                     //checking if the first letter from wordGuessed exists on the board
@@ -83,7 +94,6 @@ namespace BoggleAPI.Source.Engine
                     }
                 }
 
-                return false;
             }
 
             return false;
