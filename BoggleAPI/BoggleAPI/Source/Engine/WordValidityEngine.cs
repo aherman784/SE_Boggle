@@ -77,10 +77,6 @@ namespace BoggleAPI
 
             for (int i = 0; i < row; i++)
             {
-                if (i == wordGuessed.Length)
-                {
-                    return true;
-                }
                 for (int j = 0; j < column; j++)
                 {
                     //checking if the first letter from wordGuessed exists on the board
