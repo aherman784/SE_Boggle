@@ -1452,19 +1452,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hunte\\.nuget\\packages\\": {}
+    "C:\\Users\\matth\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+      "projectUniqueName": "C:\\Users\\matth\\Documents\\School\\UNL_Semester_1\\Software_Engineering\\Software_Engineering_Project\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
       "projectName": "BoggleAPI",
-      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
-      "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\group-10-boggle\\BoggleAPI\\BoggleAPI\\obj\\",
+      "projectPath": "C:\\Users\\matth\\Documents\\School\\UNL_Semester_1\\Software_Engineering\\Software_Engineering_Project\\group-10-boggle\\BoggleAPI\\BoggleAPI\\BoggleAPI.csproj",
+      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matth\\Documents\\School\\UNL_Semester_1\\Software_Engineering\\Software_Engineering_Project\\group-10-boggle\\BoggleAPI\\BoggleAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hunte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1530,7 +1530,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
