@@ -12,7 +12,7 @@ namespace BoggleAPI
         String[] die6 = new String[] { "L", "U", "P", "E", "T", "S" };
         String[] die7 = new String[] { "A", "C", "I", "T", "O", "A" };
         String[] die8 = new String[] { "Y", "L", "G", "K", "U", "E" };
-        String[] die9 = new String[] { "Qu", "B", "M", "J", "O", "A" };
+        String[] die9 = new String[] { "QU", "B", "M", "J", "O", "A" };
         String[] die10 = new String[] { "E", "H", "I", "S", "P", "N" };
         String[] die11 = new String[] { "V", "E", "T", "I", "G", "N" };
         String[] die12 = new String[] { "B", "A", "L", "I", "Y", "T" };
@@ -58,10 +58,13 @@ namespace BoggleAPI
             return board;
         }
 
-        public void SetNewBoard()
+        public String[,] SetNewBoard()
         {
+            String[,] newBoard = GetBoard();
             BoardAccessor boardAccessor= new BoardAccessor();
-            boardAccessor.SetBoard(GetBoard());
+            boardAccessor.SetBoard(newBoard);
+
+            return newBoard;
         }
     }
 }

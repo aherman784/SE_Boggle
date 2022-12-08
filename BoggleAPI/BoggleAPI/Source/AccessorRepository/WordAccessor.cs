@@ -1,6 +1,6 @@
 ﻿using BoggleAPI.Source.IAccessorRepository;
 using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
+
 
 namespace BoggleAPI.Source.AccessorRepository
 {
@@ -11,26 +11,50 @@ namespace BoggleAPI.Source.AccessorRepository
         public void PostCorrectWord(string wordGuessed, int playerId)
         {
             string query = $"INSERT INTO correctwords (Word, PlayerId) VALUES ('{wordGuessed}', {playerId});";
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(query, conn);
-            command.ExecuteNonQuery();
-            conn.Close();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
 
         public bool IsWordInDictionary(string word)
         {
-            return false;
+            Boolean isWordPresent = false;
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                string query = $"SELECT DISTINCT word FROM dictionary WHERE (word) LIKE '{word}'";
+                conn.Open();
+                using(MySqlCommand command = new MySqlCommand(query,conn))
+                {
+                    if (command.ExecuteScalar() != null)
+                    {
+                        isWordPresent = true;
+                    }
+                }
+                conn.Close();
+            }
+
+            return isWordPresent;
         }
 
         public void DeleteWords()
         {
             string query = $"DELETE FROM correctwords WHERE true;";
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(query, conn);
-            command.ExecuteNonQuery();
-            conn.Close();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
     }
 }

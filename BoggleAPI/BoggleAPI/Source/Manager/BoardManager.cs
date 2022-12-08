@@ -5,16 +5,10 @@ namespace BoggleAPI.Source.Manager
 {
     public class BoardManager : IBoardManager
     {
-        public string[,] GetBoard(Boolean newGame)
+        public string[,] GetBoard()
         {
-            if (newGame)
-            {
-                ShuffleEngine shuffleEngine = new ShuffleEngine();
-                shuffleEngine.SetNewBoard();
-            }
-
-            BoardAccessor boardAccessor = new BoardAccessor();
-            String[,] board = boardAccessor.GetBoard();
+            ShuffleEngine shuffleEngine = new ShuffleEngine();
+            String[,] board = shuffleEngine.SetNewBoard();
 
             return board;
         }
