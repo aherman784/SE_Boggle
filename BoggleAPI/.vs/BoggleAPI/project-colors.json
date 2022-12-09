@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "09122f17-ca91-4940-a440-cc2ed962c01b": {
+      "ProjectGuid": "09122f17-ca91-4940-a440-cc2ed962c01b",
+      "DisplayName": "BoggleAPI",
+      "ColorIndex": 0
+    },
+    "1e93a003-a434-4ec9-9fe8-8c9408e69a29": {
+      "ProjectGuid": "1e93a003-a434-4ec9-9fe8-8c9408e69a29",
+      "DisplayName": "BoggleAPITest",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
