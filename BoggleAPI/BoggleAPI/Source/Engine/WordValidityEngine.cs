@@ -31,7 +31,7 @@ namespace BoggleAPI
         static bool LocateMatch(String[,] board, string wordGuessed, int x, int y, int row, int column, int letter)
         {
 
-            if (wordGuessed.Length == letter + 1)
+            if (wordGuessed.Length == letter)
             {
                 return true;
             }
