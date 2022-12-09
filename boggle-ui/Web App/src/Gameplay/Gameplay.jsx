@@ -11,6 +11,7 @@ const socket = io.connect('http://localhost:80', {
 export function Gameplay() {
     const [isGameStarted, setIsGameStarted] = useState(true);
     const [thisPlayer, setThisPlayer] = useState();
+    let currentPlayer = {};
     const [wordInput, setWordInput] = useState('');
     const [hasJoinedMidSession, setHasJoinedMidSession] = useState(false);
     const [timeLeft, setTimeLeft] = useState(180);
@@ -21,42 +22,15 @@ export function Gameplay() {
         ['M', 'N', 'O', 'P'],
     ]);
     const [players, setPlayers] = useState([]);
-    const [wordsGuessed, setWordsGuessed] = useState([
-        'aa',
-        'aaa',
-        'aachen',
-        'aardvark',
-        'aardvarks',
-        'aaron',
-        'ab',
-        'aba',
-        'ababa',
-        'abaci',
-        'aback',
-        'abactor',
-        'abactors',
-        'abacus',
-        'abacuses',
-        'abaft',
-        'abalone',
-        'abandon',
-        'abandoned',
-        'abandonee',
-        'abandonees',
-        'abandoning',
-        'abandonment',
-        'abandons',
-        'abase',
-        'abased',
-        'abasement',  
-    ]);
+    const [wordsGuessed, setWordsGuessed] = useState([]);
     const adjectives = ['Beautiful','Happy','Silly','Clever','Graceful','Magnificent','Radiant','Elegant','Spunky','Cheerful','Sparkling','Vivacious','Poised','Playful','Lively'];
     const nouns = ['table','book','dog','car','flower','tree','desk','house','chair','pencil','phone','computer','bowl','spoon','fork'];
 
     useEffect(() => {
-        const playerInfo = {Id: Math.floor(Math.random()*100000), 
+        const playerInfo = {Id: Math.floor(Math.random()*1000000), 
             Username: adjectives[Math.floor(Math.random()*adjectives.length)] + " " + nouns[Math.floor(Math.random()*nouns.length)], 
             Score: 0};
+        currentPlayer = playerInfo;
         setThisPlayer(playerInfo);
         socket.emit("player-joined", playerInfo);
         socket.emit("is-game-in-session", playerInfo);
@@ -72,19 +46,17 @@ export function Gameplay() {
         })
     
         socket.on("game-started", (shuffledBoard) => {
-            console.log(shuffledBoard);
             setBoardLetters(shuffledBoard);
             setHasJoinedMidSession(false);
         });
 
         socket.on("update-player-info", (playersInfo) => {
-            if (thisPlayer) {
                 for (const player of playersInfo.slice()) {
-                    if (player.Id === thisPlayer.Id) {
+                    if (player.Id === currentPlayer.Id) {
+                        currentPlayer = player;
                         setThisPlayer(player);
                     }
                 }
-            }
             setPlayers(playersInfo);
         });
         
@@ -94,7 +66,7 @@ export function Gameplay() {
     }, []);
 
     const enterClick = () => {
-        socket.emit("word-guess", {PlayerId: thisPlayer.Id, Word: wordInput});
+        socket.emit("word-guess", {PlayerId: thisPlayer.Id, Word: wordInput.toUpperCase()});
         setWordsGuessed(wordsGuessed => [...wordsGuessed, wordInput]);
         setWordInput("");
     }
@@ -148,7 +120,7 @@ export function Gameplay() {
                         <input className='word-guess-input' disabled={!isGameStarted || hasJoinedMidSession} value={wordInput} onKeyDown={inputKeyPressed} onChange={(e) => setWordInput(e.target.value)}></input>
                         <button className='word-guess-enter' disabled={!isGameStarted || hasJoinedMidSession} onClick={enterClick}>Enter</button>
                     </div>
-                    <div className='player-score'>Score: {thisPlayer ? thisPlayer.Score : 0}</div>
+                    <div className='player-score'>Score: {thisPlayer != null ? thisPlayer.Score : 0}</div>
                 </div> 
                 <div className='word-bank-words'>
                     {wordsGuessed.map(word => (

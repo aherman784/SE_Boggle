@@ -70,7 +70,60 @@ namespace BoggleAPITest.SourceTest.EngineTest
             bool actual = WordEngine.IsWordOnBoard(board, word, row, column);
             bool expected = false;
             Assert.That(actual, Is.EqualTo(expected));
-
+        }
+        [Test]
+        public void isWordCorrect4()
+        {
+            int row = 4;
+            int column = 4;
+            string word = "BEAUTIFUL";
+            var WordEngine = new WordValidityEngine();
+            string[,] board =
+            {
+                { "B", "T", "I", "T" },
+                { "U", "E", "F", "B" },
+                { "A", "W", "Z", "U" },
+                { "T", "J", "L", "P" }
+            };
+            bool actual = WordEngine.IsWordOnBoard(board, word, row, column);
+            bool expected = true;
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void isWordCorrect5()
+        {
+            int row = 4;
+            int column = 4;
+            string word = "TEST";
+            var WordEngine = new WordValidityEngine();
+            string[,] board =
+            {
+                { "T", "A", "S", "Q" },
+                { "E", "E", "A", "T" },
+                { "S", "W", "Z", "R" },
+                { "T", "J", "Y", "P" }
+            };
+            bool actual = WordEngine.IsWordOnBoard(board, word, row, column);
+            bool expected = true;
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void isWordCorrect6()
+        {
+            int row = 4;
+            int column = 4;
+            string word = "TEST";
+            var WordEngine = new WordValidityEngine();
+            string[,] board =
+            {
+                { "T", "A", "S", "Q" },
+                { "E", "X", "A", "T" },
+                { "X", "W", "Z", "R" },
+                { "Q", "J", "Y", "P" }
+            };
+            bool actual = WordEngine.IsWordOnBoard(board, word, row, column);
+            bool expected = false;
+            Assert.That(actual, Is.EqualTo(expected));
         }
         [Test]
         public void IsWordCorrectLength1()
