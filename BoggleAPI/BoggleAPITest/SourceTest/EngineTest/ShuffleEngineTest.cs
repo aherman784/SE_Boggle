@@ -1,13 +1,15 @@
+using BoggleAPI;
+
 namespace BoggleAPITest
 {
     public class ShuffleEngineTest
     {
-        BoggleAPI.ShuffleEngine engine;
+        ShuffleEngine engine;
 
         [SetUp]
         public void Setup()
         {
-            engine = new BoggleAPI.ShuffleEngine();
+            engine = new ShuffleEngine();
         }
 
         [Test]
@@ -16,11 +18,15 @@ namespace BoggleAPITest
             String[,] board = engine.GetBoard();
 
             Assert.NotNull(board);
-            Assert.NotNull(board[0, 0]);
-            Assert.NotNull(board[1, 1]);
-            Assert.NotNull(board[2, 2]);
-            Assert.NotNull(board[3, 3]);
             Assert.That(board.Length, Is.EqualTo(16));
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Assert.NotNull(board[i, j]);
+                }
+            }            
         }
     }
 }
