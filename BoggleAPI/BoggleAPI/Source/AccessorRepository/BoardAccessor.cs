@@ -13,10 +13,14 @@ namespace BoggleAPI.Source.AccessorRepository
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
+                //Parameteried query which helps against SQL Injection
                 string query = $"SELECT * FROM board";
                 conn.Open();
                 using (MySqlCommand command = new MySqlCommand(query, conn))
                 {
+                    //Using prepare statement to further protect against SQL Injection
+                    command.Prepare();
+
                     String boardAsString = command.ExecuteScalar().ToString();
 
                     for (int i = 3; i >= 0; i--)
