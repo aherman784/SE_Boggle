@@ -17,9 +17,13 @@ namespace BoggleAPI.Source.AccessorRepository
                 foreach (Player player in players)
                 {
                     string values = $"({player.Id}, '{player.Username}', {player.Score})";
+                    //Parameterized sql query to help against SQL Injection
                     string query = $"INSERT INTO players (Id, Username, Score) VALUES {values};";
                     using (MySqlCommand command = new MySqlCommand(query, conn))
                     {
+                        //Prepare statement to further help protect against SQL Injection
+                        command.Prepare();
+
                         command.ExecuteNonQuery();
                     }
                 }

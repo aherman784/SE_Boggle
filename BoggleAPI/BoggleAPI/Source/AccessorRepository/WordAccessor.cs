@@ -10,12 +10,16 @@ namespace BoggleAPI.Source.AccessorRepository
 
         public void PostCorrectWord(string wordGuessed, int playerId)
         {
+            //Parameterized query which helps protect against SQL Injection
             string query = $"INSERT INTO correctwords (Word, PlayerId) VALUES ('{wordGuessed}', {playerId});";
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
                 using (MySqlCommand command = new MySqlCommand(query, conn))
                 {
+                    //Prepare statement to help against SQL Injection
+                    command.Prepare();
+
                     command.ExecuteNonQuery();
                 }
                 conn.Close();
